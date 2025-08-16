@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Satisfaction Survey</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Customer Satisfaction Survey</h1>
+            <nav class="navigation">
+                <a href="<%= request.getContextPath() %>/" class="nav-link">Home</a>
+                <a href="dashboard" class="nav-link">Dashboard</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <!-- Display success/error messages -->
+            <% if (request.getAttribute("successMessage") != null) { %>
+                <div class="alert alert-success">
+                    <%= request.getAttribute("successMessage") %>
+                </div>
+            <% } %>
+            
+            <% if (request.getAttribute("errorMessage") != null) { %>
+                <div class="alert alert-error">
+                    <%= request.getAttribute("errorMessage") %>
+                </div>
+            <% } %>
+            
+            <div class="survey-form-container">
+                <form action="submit-survey" method="post" class="survey-form">
+                    <h2>Your Feedback Matters</h2>
+                    <p class="form-description">Please rate your experience on a scale of 1 to 5, where 1 is "Very Dissatisfied" and 5 is "Very Satisfied"</p>
+                    
+                    <!-- Customer Information -->
+                    <div class="form-section">
+                        <h3>Contact Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="customerName">Name (Optional):</label>
+                            <input type="text" id="customerName" name="customerName" class="form-input" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email (Optional):</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email">
+                        </div>
+                    </div>
+                    
+                    <!-- Survey Questions -->
+                    <div class="form-section">
+                        <h3>Rate Your Experience</h3>
+                        
+                        <!-- Overall Satisfaction -->
+                        <div class="form-group">
+                            <label class="question-label">1. Overall, how satisfied are you with our service? *</label>
+                            <div class="rating-scale">
+                                <div class="rating-labels">
+                                    <span>Very Dissatisfied</span>
+                                    <span>Very Satisfied</span>
+                                </div>
+                                <div class="rating-options">
+                                    <label class="rating-option">
+                                        <input type="radio" name="overallSatisfaction" value="1" required>
+                                        <span class="rating-button">1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="overallSatisfaction" value="2" required>
+                                        <span class="rating-button">2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="overallSatisfaction" value="3" required>
+                                        <span class="rating-button">3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="overallSatisfaction" value="4" required>
+                                        <span class="rating-button">4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="overallSatisfaction" value="5" required>
+                                        <span class="rating-button">5</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Quality -->
+                        <div class="form-group">
+                            <label class="question-label">2. How would you rate the quality of our products? *</label>
+                            <div class="rating-scale">
+                                <div class="rating-labels">
+                                    <span>Very Poor</span>
+                                    <span>Excellent</span>
+                                </div>
+                                <div class="rating-options">
+                                    <label class="rating-option">
+                                        <input type="radio" name="productQuality" value="1" required>
+                                        <span class="rating-button">1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="productQuality" value="2" required>
+                                        <span class="rating-button">2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="productQuality" value="3" required>
+                                        <span class="rating-button">3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="productQuality" value="4" required>
+                                        <span class="rating-button">4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="productQuality" value="5" required>
+                                        <span class="rating-button">5</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Likelihood to Recommend -->
+                        <div class="form-group">
+                            <label class="question-label">3. How likely are you to recommend our services to others? *</label>
+                            <div class="rating-scale">
+                                <div class="rating-labels">
+                                    <span>Very Unlikely</span>
+                                    <span>Very Likely</span>
+                                </div>
+                                <div class="rating-options">
+                                    <label class="rating-option">
+                                        <input type="radio" name="likelihoodToRecommend" value="1" required>
+                                        <span class="rating-button">1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="likelihoodToRecommend" value="2" required>
+                                        <span class="rating-button">2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="likelihoodToRecommend" value="3" required>
+                                        <span class="rating-button">3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="likelihoodToRecommend" value="4" required>
+                                        <span class="rating-button">4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="likelihoodToRecommend" value="5" required>
+                                        <span class="rating-button">5</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Customer Service -->
+                        <div class="form-group">
+                            <label class="question-label">4. How would you rate our customer service? *</label>
+                            <div class="rating-scale">
+                                <div class="rating-labels">
+                                    <span>Very Poor</span>
+                                    <span>Excellent</span>
+                                </div>
+                                <div class="rating-options">
+                                    <label class="rating-option">
+                                        <input type="radio" name="customerService" value="1" required>
+                                        <span class="rating-button">1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="customerService" value="2" required>
+                                        <span class="rating-button">2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="customerService" value="3" required>
+                                        <span class="rating-button">3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="customerService" value="4" required>
+                                        <span class="rating-button">4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="customerService" value="5" required>
+                                        <span class="rating-button">5</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Comments -->
+                    <div class="form-section">
+                        <h3>Additional Feedback</h3>
+                        <div class="form-group">
+                            <label for="comments">Any additional comments or suggestions:</label>
+                            <textarea id="comments" name="comments" class="form-textarea" rows="4" placeholder="Share any additional thoughts or suggestions..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">Submit Survey</button>
+                        <p class="required-note">* Required fields</p>
+                    </div>
+                </form>
+            </div>
+        </main>
+        
+        <footer class="footer">
+        </footer>
+    </div>
+</body>
+</html>
